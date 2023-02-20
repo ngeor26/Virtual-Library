@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Library</title>
+    <style>
+
+        #button-wrapper{
+            display: flex;
+            justify-content: center;
+        }
+        #add{
+            text-align: center;
+            font-size: 3rem;
+            background-image: linear-gradient(45deg,
+              rgba(245,70,66, 0.75),
+              rgba(8,83,156, 0.75));
+            color: #fafafa;
+            border: none;
+            font-family:'Courier New', Courier, monospace
+        }
+        :root {
+            --blur-amount: 0px;
+        }
+
+        #books {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr)
+        }
+
+        .card {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: center;
+            margin: 10px;
+            height:auto;
+        }
+
+        p{
+            margin: 20px;
+        }
+
+        #book-popup-form {
+            font-weight: lighter;
+            display: none;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            
+            margin: auto;
+            background-color: #d4d4d4;
+            width:600px;
+            height: 600px;
+            border-radius: 20px;
+        }
+
+        #close {
+            position: absolute;
+            top: 0%;
+            width: 80px;
+            right: 0%;
+            z-index: 1;
+        }
+
+        #remove-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .remove{
+            position: absolute;
+            top: 0%;
+            width: 35px;
+            right: 2%;
+            z-index: 1;
+        }
+
+        #book-popup-form > form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25%;
+            transform: scale(2);
+        }
+
+        body > *:not(#book-popup-form) {
+            filter: blur(var(--blur-amount));
+        }
+
+        body{
+            background-repeat:repeat-y;
+            background-size: cover;
+            background-image: url(https://nypost.com/wp-content/uploads/sites/2/2019/03/old-library-book.jpg?quality=75&strip=all);
+        }
+
+        .read {
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: hidden;
+        }
+
+        #read-instructions{
+            position: absolute;
+            left: 0;
+            color: white;
+        }
+
+        header {
+            display:flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px){
+            #books {
+                grid-template-columns: repeat(3, 1fr)
+            }
+            .card {
+                margin: 5px;
+            }
+            #book-popup-form {
+                width: 300px;
+                height: 400px;
+            }
+            #book-popup-form > form{
+                transform: scale(1.4);
+            }
+            header {
+                flex-direction: column;
+            }
+            #read-instructions {
+                position: static;
+                text-align: center;
+            }
+            header{
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p id="read-instructions">Click Read Status to Toggle</p>
+        <div id="button-wrapper">
+            <button id="add">Add Book</button>
+        </div>
+    </header>
+
+    <div id="books">
+
+    </div>
+
+    <div id="book-popup-form">
+        <img src="https://cdn.icon-icons.com/icons2/1674/PNG/512/close_111152.png" alt="Close Popup" id="close">
+        <form action="/">
+            <h2>New Book</h2>
+            
+            <label for="title"><b>Title</b></label>
+            <input type="text" placeholder="The Kite Runner" name="title" required>
+
+            <label for="author"><b>Author</b></label>
+            <input type="text" placeholder="Khaled Hosseini" name="author" required>
+
+            <label for="pages"><b>Number of Pages</b></label>
+            <input type="text" placeholder="371" name="pages" required>
+            
+            <label for="read"><b>Have You Read It?</b></label>
+            <input type="checkbox" name="read">
+
+            <input type="submit">
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
